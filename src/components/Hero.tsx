@@ -35,11 +35,11 @@ const Hero = () => {
           <div className="space-y-2">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm text-primary mb-4 animate-fade-in">
               <UserCircle className="h-4 w-4 mr-1.5" />
-              Your AI-powered job search assistant
+              AI matching talent with the right job
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight animate-fade-up font-display">
               Transform Your Career Journey with{" "}
-              <span className="text-primary">JobGenie AI</span>
+              <span className="text-primary">TalentHunt AI</span>
             </h1>
             <p className="max-w-[700px] mx-auto mt-4 text-lg text-foreground/80 animate-fade-up animate-stagger-1">
               Let our intelligent AI tools perfect your resume, prepare you for interviews, and track your job applications—all in one powerful platform.
@@ -75,7 +75,7 @@ const Hero = () => {
           <div className="rounded-xl overflow-hidden border border-white/10 shadow-xl">
             <img 
               src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
-              alt="CareerCompanion Dashboard" 
+              alt="TalentHunt AI Dashboard" 
               className="w-full h-auto object-cover"
             />
           </div>

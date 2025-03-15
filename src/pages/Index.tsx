@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, MessageSquare, Briefcase, UserCircle } from "lucide-react";
@@ -56,11 +57,11 @@ const Index = () => {
               <div className="flex items-center gap-2 mb-4">
                 <UserCircle className="h-6 w-6 text-primary" />
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display">
-                  Ready To Meet Your Job Search Genie?
+                  Ready To Find Your Perfect Match?
                 </h2>
               </div>
               <p className="text-lg text-foreground/80 mb-6">
-                Start using our intelligent AI tools today and let JobGenie AI help transform your job search results.
+                Start using our intelligent AI tools today and let TalentHunt AI help match your talent with the right job opportunities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
@@ -79,7 +80,7 @@ const Index = () => {
             <div className="md:w-1/2 flex justify-center">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
-                alt="Happy job seekers using CareerCompanion" 
+                alt="Happy job seekers using TalentHunt AI" 
                 className="rounded-xl shadow-lg border border-white/10 w-full max-w-md h-auto object-cover"
               />
             </div>
@@ -93,9 +94,9 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center">
               <span className="bg-primary text-primary-foreground px-2 py-1 rounded mr-1 flex items-center">
-                <UserCircle className="h-4 w-4 mr-1" />JG
+                <UserCircle className="h-4 w-4 mr-1" />TH
               </span>
-              <span className="text-xl font-semibold font-display">JobGenie AI</span>
+              <span className="text-xl font-semibold font-display">TalentHunt AI</span>
             </div>
             
             <nav className="flex flex-wrap gap-8 justify-center">
@@ -106,7 +107,7 @@ const Index = () => {
             </nav>
             
             <div className="text-sm text-foreground/60">
-              © {new Date().getFullYear()} JobGenie AI. All rights reserved.
+              © {new Date().getFullYear()} TalentHunt AI. All rights reserved.
             </div>
           </div>
         </div>
