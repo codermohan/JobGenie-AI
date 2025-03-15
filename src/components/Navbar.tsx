@@ -34,9 +34,9 @@ const Navbar = () => {
           className="text-xl font-semibold flex items-center"
         >
           <span className="bg-primary text-primary-foreground px-2 py-1 rounded mr-1 flex items-center">
-            <UserCircle className="h-4 w-4 mr-1" />CC
+            <UserCircle className="h-4 w-4 mr-1" />JG
           </span>
-          <span className="font-display">CareerCompanion</span>
+          <span className="font-display">JobGenie AI</span>
         </Link>
 
         {/* Desktop Navigation */}

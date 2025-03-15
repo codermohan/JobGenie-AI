@@ -35,14 +35,14 @@ const Hero = () => {
           <div className="space-y-2">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm text-primary mb-4 animate-fade-in">
               <UserCircle className="h-4 w-4 mr-1.5" />
-              Your AI buddy for job success
+              Your AI-powered job search assistant
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight animate-fade-up font-display">
               Transform Your Career Journey with{" "}
-              <span className="text-primary">CareerCompanion</span>
+              <span className="text-primary">JobGenie AI</span>
             </h1>
             <p className="max-w-[700px] mx-auto mt-4 text-lg text-foreground/80 animate-fade-up animate-stagger-1">
-              Let our intelligent AI tools perfect your resume, prepare you for interviews, and track your job applications—all in one friendly platform.
+              Let our intelligent AI tools perfect your resume, prepare you for interviews, and track your job applications—all in one powerful platform.
             </p>
           </div>
 

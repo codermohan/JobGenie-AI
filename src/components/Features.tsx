@@ -44,11 +44,11 @@ const Features = () => {
           <div className="flex items-center justify-center gap-2 mb-4">
             <UserCircle className="h-6 w-6 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display text-gradient-orange">
-              CareerCompanion's Smart Toolkit
+              JobGenie AI's Smart Toolkit
             </h2>
           </div>
           <p className="text-lg text-foreground/80 font-light">
-            Discover our intelligent features designed to simplify your job search journey
+            Discover our intelligent features designed to supercharge your job search journey
           </p>
         </div>
         
