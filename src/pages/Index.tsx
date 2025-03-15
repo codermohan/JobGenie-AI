@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, MessageSquare, Briefcase, Wand2 } from "lucide-react";
+import { ArrowRight, FileText, MessageSquare, Briefcase, UserCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -22,13 +22,13 @@ const Index = () => {
         <div className="container px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Wand2 className="h-6 w-6 text-primary" />
+              <UserCircle className="h-6 w-6 text-primary" />
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 font-display">
-                How The Magic Works
+                How Your AI Buddy Works
               </h2>
             </div>
             <p className="text-lg text-foreground/80">
-              Our wizardry simplifies your job search journey in just three magical steps
+              Our smart technology simplifies your job search journey in just three simple steps
             </p>
           </div>
           
@@ -55,24 +55,24 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
             <div className="md:w-1/2">
               <div className="flex items-center gap-2 mb-4">
-                <Wand2 className="h-6 w-6 text-primary" />
+                <UserCircle className="h-6 w-6 text-primary" />
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display">
-                  Ready For Some Career Magic?
+                  Ready To Meet Your Career Buddy?
                 </h2>
               </div>
               <p className="text-lg text-foreground/80 mb-6">
-                Start using our enchanted AI tools today and watch the magic transform your job search results.
+                Start using our intelligent AI tools today and let your career companion help transform your job search results.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
                   <Link to="/chat" className="group">
-                    Cast Your First Spell
+                    Start Your Journey
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link to="/features">
-                    Explore Our Spellbook
+                    Explore Features
                   </Link>
                 </Button>
               </div>
@@ -80,7 +80,7 @@ const Index = () => {
             <div className="md:w-1/2 flex justify-center">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
-                alt="Happy job seekers using JobWizard AI" 
+                alt="Happy job seekers using CareerCompanion" 
                 className="rounded-xl shadow-lg border border-white/10 w-full max-w-md h-auto object-cover"
               />
             </div>
@@ -94,9 +94,9 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center">
               <span className="bg-primary text-primary-foreground px-2 py-1 rounded mr-1 flex items-center">
-                <Wand2 className="h-4 w-4 mr-1" />JW
+                <UserCircle className="h-4 w-4 mr-1" />CC
               </span>
-              <span className="text-xl font-semibold font-display">JobWizard AI</span>
+              <span className="text-xl font-semibold font-display">CareerCompanion</span>
             </div>
             
             <nav className="flex flex-wrap gap-8 justify-center">
@@ -107,7 +107,7 @@ const Index = () => {
             </nav>
             
             <div className="text-sm text-foreground/60">
-              © {new Date().getFullYear()} JobWizard AI. All rights reserved.
+              © {new Date().getFullYear()} CareerCompanion. All rights reserved.
             </div>
           </div>
         </div>
@@ -118,18 +118,18 @@ const Index = () => {
 
 const steps = [
   {
-    title: "Upload Your Scroll",
-    description: "Submit your resume to our magical AI analyzer for personalized enchantments and improvements.",
+    title: "Upload Your Resume",
+    description: "Submit your resume to our intelligent AI analyzer for personalized improvements and suggestions.",
     icon: FileText
   },
   {
-    title: "Consult the Oracle",
-    description: "Chat with our AI wizard to receive mystical guidance for all your job search questions.",
+    title: "Chat With Your Buddy",
+    description: "Talk with our AI companion to receive practical guidance for all your job search questions.",
     icon: MessageSquare
   },
   {
-    title: "Track Your Quest",
-    description: "Use our enchanted tools to organize your job applications and receive magical reminders.",
+    title: "Track Your Progress",
+    description: "Use our smart tools to organize your job applications and receive timely reminders.",
     icon: Briefcase
   }
 ];

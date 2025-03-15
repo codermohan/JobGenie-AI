@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Wand2 } from "lucide-react";
+import { Menu, X, UserCircle } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,9 +34,9 @@ const Navbar = () => {
           className="text-xl font-semibold flex items-center"
         >
           <span className="bg-primary text-primary-foreground px-2 py-1 rounded mr-1 flex items-center">
-            <Wand2 className="h-4 w-4 mr-1" />JW
+            <UserCircle className="h-4 w-4 mr-1" />CC
           </span>
-          <span className="font-display">JobWizard AI</span>
+          <span className="font-display">CareerCompanion</span>
         </Link>
 
         {/* Desktop Navigation */}

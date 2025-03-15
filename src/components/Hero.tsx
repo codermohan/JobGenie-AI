@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle, Wand2 } from "lucide-react";
+import { ArrowRight, CheckCircle, UserCircle } from "lucide-react";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -34,22 +34,22 @@ const Hero = () => {
         <div className="flex flex-col items-center text-center space-y-8 md:space-y-12">
           <div className="space-y-2">
             <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm text-primary mb-4 animate-fade-in">
-              <Wand2 className="h-4 w-4 mr-1.5" />
-              AI magic for job seekers
+              <UserCircle className="h-4 w-4 mr-1.5" />
+              Your AI buddy for job success
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight animate-fade-up font-display">
               Transform Your Career Journey with{" "}
-              <span className="text-primary">JobWizard AI</span>
+              <span className="text-primary">CareerCompanion</span>
             </h1>
             <p className="max-w-[700px] mx-auto mt-4 text-lg text-foreground/80 animate-fade-up animate-stagger-1">
-              Let our magical AI tools perfect your resume, prepare you for interviews, and track your job applications—all in one enchanting platform.
+              Let our intelligent AI tools perfect your resume, prepare you for interviews, and track your job applications—all in one friendly platform.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up animate-stagger-2">
             <Button size="lg" asChild>
               <Link to="/chat" className="group">
-                Experience the Magic
+                Meet Your AI Buddy
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -75,7 +75,7 @@ const Hero = () => {
           <div className="rounded-xl overflow-hidden border border-white/10 shadow-xl">
             <img 
               src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
-              alt="JobWizard AI Dashboard" 
+              alt="CareerCompanion Dashboard" 
               className="w-full h-auto object-cover"
             />
           </div>
@@ -86,12 +86,12 @@ const Hero = () => {
 };
 
 const features = [
-  "Magic Resume Analysis",
-  "Enchanted Interview Prep",
-  "Spell-Bound Job Tracking",
-  "Wizardly Chat Assistant",
-  "Magical Networking Tips",
-  "Enchanted Career Guidance"
+  "Smart Resume Analysis",
+  "Intelligent Interview Prep",
+  "Intuitive Job Tracking",
+  "Helpful Chat Assistant",
+  "Personalized Networking Tips",
+  "Tailored Career Guidance"
 ];
 
 export default Hero;

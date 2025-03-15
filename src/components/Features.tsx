@@ -1,38 +1,38 @@
 
 import React from "react";
-import { FileText, MessageSquare, Briefcase, Search, ChartBar, Calendar, Wand2 } from "lucide-react";
+import { FileText, MessageSquare, Briefcase, Search, ChartBar, Calendar, UserCircle } from "lucide-react";
 import { Feature } from "@/types";
 
 const Features = () => {
   const features: Feature[] = [
     {
-      title: "Magical Resume Analysis",
-      description: "Our AI wizardry reveals how to transform your resume to captivate hiring managers and outsmart ATS systems.",
+      title: "Smart Resume Analysis",
+      description: "Our AI intelligence reveals how to transform your resume to captivate hiring managers and outsmart ATS systems.",
       icon: FileText
     },
     {
-      title: "Enchanted Career Chat",
-      description: "Consult with our AI wizard for spellbinding career advice, job search strategies, and personalized guidance.",
+      title: "Friendly Career Chat",
+      description: "Consult with our AI buddy for practical career advice, job search strategies, and personalized guidance.",
       icon: MessageSquare
     },
     {
-      title: "Spell-Bound Job Tracker",
-      description: "Keep your job hunt organized with magical tracking of applications, interviews, and follow-ups in one enchanted space.",
+      title: "Intuitive Job Tracker",
+      description: "Keep your job hunt organized with intelligent tracking of applications, interviews, and follow-ups in one convenient space.",
       icon: Briefcase
     },
     {
-      title: "Mystical Job Matching",
-      description: "Our crystal ball algorithm discovers the perfect job opportunities that align with your unique skills and aspirations.",
+      title: "Intelligent Job Matching",
+      description: "Our smart algorithm discovers the perfect job opportunities that align with your unique skills and aspirations.",
       icon: Search
     },
     {
-      title: "Interview Wizardry",
-      description: "Master the art of interviews with AI-conjured questions tailored to your dream roles and industries.",
+      title: "Interview Companion",
+      description: "Master the art of interviews with AI-generated questions tailored to your dream roles and industries.",
       icon: ChartBar
     },
     {
-      title: "Enchanted Reminders",
-      description: "Our magical timekeepers ensure you never miss important follow-ups for your job applications.",
+      title: "Smart Reminders",
+      description: "Our intelligent reminders ensure you never miss important follow-ups for your job applications.",
       icon: Calendar
     }
   ];
@@ -42,13 +42,13 @@ const Features = () => {
       <div className="container px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Wand2 className="h-6 w-6 text-primary" />
+            <UserCircle className="h-6 w-6 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display text-gradient-orange">
-              JobWizard's Magical Toolkit
+              CareerCompanion's Smart Toolkit
             </h2>
           </div>
           <p className="text-lg text-foreground/80 font-light">
-            Discover our enchanting features designed to cast away job search struggles
+            Discover our intelligent features designed to simplify your job search journey
           </p>
         </div>
         
