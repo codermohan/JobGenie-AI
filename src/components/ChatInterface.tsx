@@ -73,13 +73,13 @@ const ChatInterface = () => {
   };
 
   return (
-    <Card className="flex flex-col h-[600px] max-h-[80vh] w-full max-w-3xl mx-auto shadow-lg">
-      <div className="flex items-center p-4 border-b bg-secondary/30">
+    <Card className="flex flex-col h-[600px] max-h-[80vh] w-full max-w-3xl mx-auto shadow-lg border-accent/20">
+      <div className="flex items-center p-4 border-b bg-gradient-to-r from-primary/5 to-accent/5">
         <Bot className="h-5 w-5 mr-2 text-primary" />
         <h2 className="font-medium">AI Career Assistant</h2>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/20">
         {messages.map((message) => (
           <div
             key={message.id}
@@ -108,8 +108,8 @@ const ChatInterface = () => {
               </div>
 
               {message.role === "user" && (
-                <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                  <User className="h-4 w-4" />
+                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <User className="h-4 w-4 text-accent" />
                 </div>
               )}
             </div>
@@ -132,20 +132,20 @@ const ChatInterface = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 border-t">
+      <div className="p-4 border-t bg-gradient-to-r from-white to-accent/5">
         <div className="flex items-end gap-2">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask me anything about your job search..."
-            className="min-h-[60px] resize-none"
+            className="min-h-[60px] resize-none font-light"
           />
           <Button 
             size="icon" 
             onClick={handleSendMessage} 
             disabled={!input.trim() || isLoading}
-            className="flex-shrink-0"
+            className="flex-shrink-0 bg-gradient-to-r from-primary to-accent hover:opacity-90"
           >
             <Send className="h-4 w-4" />
           </Button>
