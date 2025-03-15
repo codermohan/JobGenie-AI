@@ -41,7 +41,7 @@ const Features = () => {
     <section className="py-20 md:py-28 bg-gradient-to-b from-background to-accent/5">
       <div className="container px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 font-display gradient-heading">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 font-display text-gradient-orange">
             AI-Powered Career Tools
           </h2>
           <p className="text-lg text-foreground/80 font-light">
@@ -53,12 +53,12 @@ const Features = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="relative flex flex-col p-6 bg-white dark:bg-gray-950 rounded-xl shadow-sm border border-border hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]"
+              className="relative flex flex-col p-6 neo-card rounded-xl"
             >
-              <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+              <div className="h-12 w-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4">
                 <feature.icon className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 font-display">{feature.title}</h3>
+              <h3 className="text-xl font-semibold mb-2 font-display text-white">{feature.title}</h3>
               <p className="text-foreground/80 mb-4 font-light">{feature.description}</p>
             </div>
           ))}
