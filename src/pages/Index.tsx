@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, MessageSquare, Briefcase } from "lucide-react";
+import { ArrowRight, FileText, MessageSquare, Briefcase, Wand2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -21,11 +21,14 @@ const Index = () => {
       <section className="py-20 md:py-32">
         <div className="container px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              How It Works
-            </h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Wand2 className="h-6 w-6 text-primary" />
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 font-display">
+                How The Magic Works
+              </h2>
+            </div>
             <p className="text-lg text-foreground/80">
-              Our platform simplifies your job search with AI-powered tools at every step
+              Our wizardry simplifies your job search journey in just three magical steps
             </p>
           </div>
           
@@ -38,7 +41,7 @@ const Index = () => {
                   </div>
                   <div className="absolute top-8 -right-full h-0.5 w-full bg-primary/20 hidden md:block"></div>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Step {index + 1}: {step.title}</h3>
+                <h3 className="text-xl font-medium mb-2 font-display">Step {index + 1}: {step.title}</h3>
                 <p className="text-foreground/80">{step.description}</p>
               </div>
             ))}
@@ -51,22 +54,25 @@ const Index = () => {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
             <div className="md:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Ready to Transform Your Job Search?
-              </h2>
+              <div className="flex items-center gap-2 mb-4">
+                <Wand2 className="h-6 w-6 text-primary" />
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display">
+                  Ready For Some Career Magic?
+                </h2>
+              </div>
               <p className="text-lg text-foreground/80 mb-6">
-                Start using our AI-powered tools today and see the difference in your job search results.
+                Start using our enchanted AI tools today and watch the magic transform your job search results.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
                   <Link to="/chat" className="group">
-                    Get Started
+                    Cast Your First Spell
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link to="/features">
-                    Learn More
+                    Explore Our Spellbook
                   </Link>
                 </Button>
               </div>
@@ -74,8 +80,8 @@ const Index = () => {
             <div className="md:w-1/2 flex justify-center">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
-                alt="Happy job seekers" 
-                className="rounded-xl shadow-lg w-full max-w-md h-auto object-cover"
+                alt="Happy job seekers using JobWizard AI" 
+                className="rounded-xl shadow-lg border border-white/10 w-full max-w-md h-auto object-cover"
               />
             </div>
           </div>
@@ -83,12 +89,14 @@ const Index = () => {
       </section>
       
       {/* Footer */}
-      <footer className="py-12 border-t">
+      <footer className="py-12 border-t border-white/10">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center">
-              <span className="bg-primary text-primary-foreground px-2 py-1 rounded mr-1">AI</span>
-              <span className="text-xl font-semibold">CareerAssist</span>
+              <span className="bg-primary text-primary-foreground px-2 py-1 rounded mr-1 flex items-center">
+                <Wand2 className="h-4 w-4 mr-1" />JW
+              </span>
+              <span className="text-xl font-semibold font-display">JobWizard AI</span>
             </div>
             
             <nav className="flex flex-wrap gap-8 justify-center">
@@ -99,7 +107,7 @@ const Index = () => {
             </nav>
             
             <div className="text-sm text-foreground/60">
-              © {new Date().getFullYear()} AI CareerAssist. All rights reserved.
+              © {new Date().getFullYear()} JobWizard AI. All rights reserved.
             </div>
           </div>
         </div>
@@ -110,18 +118,18 @@ const Index = () => {
 
 const steps = [
   {
-    title: "Upload Your Resume",
-    description: "Submit your resume for AI analysis to get personalized improvement suggestions.",
+    title: "Upload Your Scroll",
+    description: "Submit your resume to our magical AI analyzer for personalized enchantments and improvements.",
     icon: FileText
   },
   {
-    title: "Consult with AI",
-    description: "Chat with our AI assistant to get answers to all your job search questions.",
+    title: "Consult the Oracle",
+    description: "Chat with our AI wizard to receive mystical guidance for all your job search questions.",
     icon: MessageSquare
   },
   {
-    title: "Track Applications",
-    description: "Organize your job applications and get reminders for follow-ups.",
+    title: "Track Your Quest",
+    description: "Use our enchanted tools to organize your job applications and receive magical reminders.",
     icon: Briefcase
   }
 ];
