@@ -1,0 +1,16 @@
+3️⃣ Install FastAPI & Dependencies
+Run the following command to install required packages:
+
+sh
+Copy
+Edit
+pip install fastapi uvicorn spacy
+python -m spacy download en_core_web_sm
+4️⃣ Run the Backend Server
+Start the FastAPI server with:
+
+sh
+Copy
+Edit
+uvicorn main:app --reload
+Your API will now be available at: http://127.0.0.1:8000/docs
