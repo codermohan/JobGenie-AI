@@ -112,17 +112,60 @@ def extract_resume_keywords(resume: Resume):
 
 
 
----------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 
-#This is another chat given by gpt
 
-from fastapi import FastAPI
-from auth import router as auth_router
+#this is another auth.py given by gpt
 
-app = FastAPI()
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from passlib.context import CryptContext
+from jose import JWTError, jwt
+from datetime import datetime, timedelta
+from database import SessionLocal, create_user
+from models import User
 
-app.include_router(auth_router)
+router = APIRouter()
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to JobGenie AI Backend"}
+# Secret key for JWT
+SECRET_KEY = "your_secret_key_here"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# Dependency to get database session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# User registration
+@router.post("/register/")
+def register(username: str, password: str, db: Session = Depends(get_db)):
+    existing_user = db.query(User).filter(User.username == username).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already taken")
+
+    hashed_password = pwd_context.hash(password)
+    user = create_user(db, username, hashed_password)
+    return {"message": "User created", "user_id": user.id}
+
+# Generate JWT token
+def create_access_token(data: dict, expires_delta: timedelta):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + expires_delta
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+# User login
+@router.post("/token/")
+def login(username: str, password: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == username).first()
+    if not user or not pwd_context.verify(password, user.hashed_password):
+        raise HTTPException(status_code=400, detail="Invalid credentials")
+
+    access_token = create_access_token({"sub": user.username}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    return {"access_token": access_token, "token_type": "bearer"}

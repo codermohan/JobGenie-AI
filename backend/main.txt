@@ -14,3 +14,76 @@ Copy
 Edit
 uvicorn main:app --reload
 Your API will now be available at: http://127.0.0.1:8000/docs
+
+
+
+------------------------------------------------------------
+
+
+ Add User Authentication with JWT
+🔹 Install Dependencies:
+
+sh
+Copy
+Edit
+pip install passlib[bcrypt] pyjwt python-dotenv sqlalchemy
+
+
+
+----------------------------------------------------
+
+
+Answer in chat instead
+I've added JWT-based authentication to your backend, including:
+✅ Login API (/token) - Generates a JWT token for users
+✅ Secure User Dashboard (/user-dashboard) - Protected API route
+✅ Password Hashing & Verification
+
+Next Steps for You:
+1️⃣ Install the missing dependencies:
+
+sh
+Copy
+Edit
+pip install passlib[bcrypt] pyjwt python-dotenv
+2️⃣ Test Login API
+
+Use Postman or Swagger UI (http://127.0.0.1:8000/docs)
+Send a POST request to /token with username=testuser & password=password
+Copy the token and use it to access /user-dashboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------
+
+
+Now, let's replace the dummy user database with a real database using SQLite and SQLAlchemy.
+
+🔹 Steps for Today:
+✅ 1️⃣ Install SQLite & SQLAlchemy
+✅ 2️⃣ Create a Database Model for Users
+✅ 3️⃣ Store & Retrieve Users from Database
+✅ 4️⃣ Update Authentication to Work with the Database
+
+1️⃣ Install Required Packages
+Run this command to install SQLite & SQLAlchemy:
+
+sh
+Copy
+Edit
+pip install sqlalchemy sqlite3 fastapi[all]
+2️⃣ Set Up Database Model (database.py)
+I'll now update your backend to include SQLAlchemy database models and integrate them into authentication.

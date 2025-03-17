@@ -1,0 +1,458 @@
+1️⃣ Add User Authentication with JWT
+🔹 Install Dependencies:
+
+sh
+Copy
+Edit
+pip install passlib[bcrypt] pyjwt python-dotenv sqlalchemy
+🔹 Create auth.py for Authentication Logic
+
+Handles user registration, login, and token generation
+I'll generate the authentication code now.
+
+Edited
+I've added JWT-based authentication to your backend, including:
+✅ Login API (/token) - Generates a JWT token for users
+✅ Secure User Dashboard (/user-dashboard) - Protected API route
+✅ Password Hashing & Verification
+
+Next Steps for You:
+1️⃣ Install the missing dependencies:
+
+sh
+Copy
+Edit
+pip install passlib[bcrypt] pyjwt python-dotenv
+2️⃣ Test Login API
+
+Use Postman or Swagger UI (http://127.0.0.1:8000/docs)
+Send a POST request to /token with username=testuser & password=password
+Copy the token and use it to access /user-dashboard
+Let me know if you want to add database support next! 🚀
+
+
+
+
+
+
+You said:
+yes
+ChatGPT said:
+Step 3: Add a Database for User Authentication
+Now, let's connect your backend to a database for storing user credentials instead of hardcoding them. We'll use SQLite for simplicity (can be upgraded to PostgreSQL/MySQL later).
+
+1️⃣ Install SQLAlchemy & Databases
+Run the following command to install the necessary libraries:
+
+sh
+Copy
+Edit
+pip install sqlalchemy sqlite3 databases
+2️⃣ Create a Database Model (models.py)
+Inside your backend folder, create a file named models.py and add this code:
+
+python
+Copy
+Edit
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+DATABASE_URL = "sqlite:///./users.db"
+
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
+3️⃣ Initialize the Database
+Inside your backend folder, create a new file database.py and add:
+
+python
+Copy
+Edit
+from sqlalchemy.orm import Session
+from models import Base, engine, User
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
+
+# Function to create a new user
+def create_user(db: Session, username: str, hashed_password: str):
+    db_user = User(username=username, hashed_password=hashed_password)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+Run this script once to create the users.db file:
+
+sh
+Copy
+Edit
+python database.py
+4️⃣ Update auth.py to Use Database
+Modify auth.py to store and verify users in the database instead of using hardcoded values.
+
+Let me know when you're ready for this step! 🚀
+
+
+2/2
+
+
+
+
+
+
+You said:
+give me previous one which has database.py
+ChatGPT said:
+Here’s the updated FastAPI backend with JWT authentication and SQLite database integration for storing users.
+
+
+
+
+
+
+
+----------------------------------------------------
+
+
+Step 1: Install Dependencies
+Run the following in your terminal:
+
+sh
+Copy
+Edit
+pip install fastapi uvicorn sqlalchemy sqlite3 databases passlib[bcrypt] pyjwt python-dotenv
+🔹 Step 2: Create models.py (Database Models)
+Create a file named models.py inside backend/ and add:
+
+python
+Copy
+Edit
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# Database URL (Change this if using PostgreSQL/MySQL)
+DATABASE_URL = "sqlite:///./users.db"
+
+# Setup database engine
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Base class for models
+Base = declarative_base()
+
+# User model
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
+🔹 Step 3: Create database.py (Database Setup)
+Create a file named database.py inside backend/ and add:
+
+python
+Copy
+Edit
+from sqlalchemy.orm import Session
+from models import Base, engine, User
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
+
+# Function to create a new user
+def create_user(db: Session, username: str, hashed_password: str):
+    db_user = User(username=username, hashed_password=hashed_password)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+Run this script once to create the users.db file:
+
+sh
+Copy
+Edit
+python database.py
+🔹 Step 4: Create auth.py (User Authentication with JWT)
+Create a file named auth.py inside backend/ and add:
+
+python
+Copy
+Edit
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from passlib.context import CryptContext
+from jose import JWTError, jwt
+from datetime import datetime, timedelta
+from database import SessionLocal, create_user
+from models import User
+
+router = APIRouter()
+
+# Secret key for JWT
+SECRET_KEY = "your_secret_key_here"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# Dependency to get database session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# User registration
+@router.post("/register/")
+def register(username: str, password: str, db: Session = Depends(get_db)):
+    hashed_password = pwd_context.hash(password)
+    user = create_user(db, username, hashed_password)
+    return {"message": "User created", "user_id": user.id}
+
+# Generate JWT token
+def create_access_token(data: dict, expires_delta: timedelta):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + expires_delta
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+# User login
+@router.post("/token/")
+def login(username: str, password: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == username).first()
+    if not user or not pwd_context.verify(password, user.hashed_password):
+        raise HTTPException(status_code=400, detail="Invalid credentials")
+
+    access_token = create_access_token({"sub": user.username}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    return {"access_token": access_token, "token_type": "bearer"}
+🔹 Step 5: Update main.py to Include Auth Routes
+Modify main.py to integrate auth.py:
+
+python
+Copy
+Edit
+from fastapi import FastAPI
+from auth import router as auth_router
+
+app = FastAPI()
+
+app.include_router(auth_router)
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to JobGenie AI Backend"}
+🔹 Step 6: Run Your Backend
+sh
+Copy
+Edit
+uvicorn main:app --reload
+Now, open http://127.0.0.1:8000/docs to test your APIs.
+
+✅ You can now register users and log in with JWT authentication! 🎉
+
+🔹 Next Steps
+1️⃣ Add protected routes (only accessible with JWT)
+2️⃣ Integrate Job & Resume Keyword Extraction APIs
+3️⃣ Deploy on AWS/Firebase
+
+Let me know what you want to add next! 🚀
+
+
+
+
+
+
+You said:
+give me code and all the data that should be present in all above files in backend folder including requirements so i can save all of them
+ChatGPT said:
+Here is the complete backend code for your AI Job Search platform. This includes:
+✅ FastAPI for backend
+✅ SQLite database with SQLAlchemy
+✅ JWT-based authentication (Register/Login)
+✅ Complete folder structure & dependencies
+
+🔹 Folder Structure
+Your backend/ folder should contain the following files:
+
+pgsql
+Copy
+Edit
+backend/
+│── main.py          # Main FastAPI app
+│── auth.py          # User authentication (login, token)
+│── database.py      # Database connection & setup
+│── models.py        # Database models (User table)
+│── requirements.txt # List of dependencies
+│── users.db         # SQLite database (auto-created)
+🔹 Step 1: Create & Save models.py
+📂 backend/models.py
+
+python
+Copy
+Edit
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# Database URL (Change this if using PostgreSQL/MySQL)
+DATABASE_URL = "sqlite:///./users.db"
+
+# Setup database engine
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Base class for models
+Base = declarative_base()
+
+# User model
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
+🔹 Step 2: Create & Save database.py
+📂 backend/database.py
+
+python
+Copy
+Edit
+from sqlalchemy.orm import Session
+from models import Base, engine, User
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
+
+# Function to create a new user
+def create_user(db: Session, username: str, hashed_password: str):
+    db_user = User(username=username, hashed_password=hashed_password)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+Run this script once to create the users.db file:
+
+sh
+Copy
+Edit
+python database.py
+🔹 Step 3: Create & Save auth.py
+📂 backend/auth.py
+
+python
+Copy
+Edit
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from passlib.context import CryptContext
+from jose import JWTError, jwt
+from datetime import datetime, timedelta
+from database import SessionLocal, create_user
+from models import User
+
+router = APIRouter()
+
+# Secret key for JWT
+SECRET_KEY = "your_secret_key_here"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+# Dependency to get database session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# User registration
+@router.post("/register/")
+def register(username: str, password: str, db: Session = Depends(get_db)):
+    existing_user = db.query(User).filter(User.username == username).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already taken")
+
+    hashed_password = pwd_context.hash(password)
+    user = create_user(db, username, hashed_password)
+    return {"message": "User created", "user_id": user.id}
+
+# Generate JWT token
+def create_access_token(data: dict, expires_delta: timedelta):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + expires_delta
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+# User login
+@router.post("/token/")
+def login(username: str, password: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == username).first()
+    if not user or not pwd_context.verify(password, user.hashed_password):
+        raise HTTPException(status_code=400, detail="Invalid credentials")
+
+    access_token = create_access_token({"sub": user.username}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    return {"access_token": access_token, "token_type": "bearer"}
+🔹 Step 4: Create & Save main.py
+📂 backend/main.py
+
+python
+Copy
+Edit
+from fastapi import FastAPI
+from auth import router as auth_router
+
+app = FastAPI()
+
+app.include_router(auth_router)
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to JobGenie AI Backend"}
+🔹 Step 5: Create & Save requirements.txt
+📂 backend/requirements.txt
+
+css
+Copy
+Edit
+fastapi
+uvicorn
+sqlalchemy
+sqlite3
+databases
+passlib[bcrypt]
+pyjwt
+python-dotenv
+🔹 Step 6: Install Dependencies
+Run the following command to install all required packages:
+
+sh
+Copy
+Edit
+pip install -r requirements.txt
+🔹 Step 7: Run the Backend
+Start the FastAPI server using:
+
+sh
+Copy
+Edit
+uvicorn main:app --reload
+Your backend is now running at: http://127.0.0.1:8000/docs 🚀
+
+🔹 Next Steps
+1️⃣ Test the APIs in Postman or Swagger UI
+2️⃣ Add a protected route (only accessible with JWT token)
+3️⃣ Integrate Job & Resume Keyword Extraction APIs
+
+Let me know if you need any modifications or additional features! 
